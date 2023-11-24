@@ -9,9 +9,10 @@ defmodule GPGex.MixProject do
     [
       app: :gpg_ex,
       version: "0.1.0",
-      elixir: "~> 1.12.3 or ~> 1.13",
+      elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      dialyzer: dialyzer(),
       description: description(),
       package: package(),
       docs: docs()
@@ -20,7 +21,15 @@ defmodule GPGex.MixProject do
 
   defp deps do
     [
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+    ]
+  end
+
+  defp dialyzer() do
+    [
+      plt_local_path: "priv/plts/project.plt",
+      plt_core_path: "priv/plts/core.plt"
     ]
   end
 
