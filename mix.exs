@@ -3,6 +3,7 @@ defmodule GPGex.MixProject do
 
   @version "0.1.0"
   @source_url "https://github.com/sheerlox/gpg_ex"
+  @docs_url "http://hexdocs.pm/gpg_ex"
 
   def project do
     [
@@ -10,9 +11,16 @@ defmodule GPGex.MixProject do
       version: "0.1.0",
       elixir: "~> 1.12.3 or ~> 1.13",
       start_permanent: Mix.env() == :prod,
+      deps: deps(),
       description: description(),
       package: package(),
       docs: docs()
+    ]
+  end
+
+  defp deps do
+    [
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
@@ -26,7 +34,10 @@ defmodule GPGex.MixProject do
     [
       maintainers: ["Pierre Cavin"],
       licenses: ["Apache-2.0"],
-      links: %{"GitHub" => @source_url}
+      links: %{
+        GitHub: @source_url,
+        Changelog: "#{@docs_url}/changelog.html"
+      }
     ]
   end
 
@@ -36,7 +47,7 @@ defmodule GPGex.MixProject do
       main: "readme",
       source_url: @source_url,
       source_ref: "v#{@version}",
-      canonical: "http://hexdocs.pm/gpg_ex",
+      canonical: @docs_url,
       extras: ["README.md", "CHANGELOG.md", "LICENSE.md"]
     ]
   end
