@@ -21,6 +21,7 @@ defmodule GPGex.MixProject do
 
   defp deps do
     [
+      {:elixir_uuid, "~> 1.2"},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
