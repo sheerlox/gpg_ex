@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0-alpha.2](https://github.com/sheerlox/gpg_ex/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2023-11-26)
+
+
+### ⚠ Breaking changes
+
+* removed `gpg_home` config key in favor of `global_keystore`
+* `cmd/2` now returns command arguments on error
+
+### ✨ Features
+
+* add `Keystore` module ([#1](https://github.com/sheerlox/gpg_ex/issues/1)) ([07580d2](https://github.com/sheerlox/gpg_ex/commit/07580d21f21061097e1e132a612f0a45c914ebd1))
+
 ## 1.0.0-alpha.1 (2023-11-25)
 
 
