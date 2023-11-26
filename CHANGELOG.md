@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-alpha.3](https://github.com/sheerlox/gpg_ex/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2023-11-26)
+
+
+### 🛠 Builds
+
+* update dependency semantic-release-hex to v1.1.1 ([322426a](https://github.com/sheerlox/gpg_ex/commit/322426a675e2173b6d2b318f01fbc17180358003))
+
 ## [1.0.0-alpha.2](https://github.com/sheerlox/gpg_ex/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2023-11-26)
 
 
