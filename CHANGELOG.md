@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0-alpha.4](https://github.com/sheerlox/gpg_ex/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2023-11-29)
+
+
+### ⚠ Breaking changes
+
+* all functions now return their data in a nested tuple
+
+### ✨ Features
+
+* add `cmd?/2` which returns a success boolean ([ef17471](https://github.com/sheerlox/gpg_ex/commit/ef174713ad40234df5c4956addee488acd13326d))
+* improve pattern matching on return tuples ([28639c2](https://github.com/sheerlox/gpg_ex/commit/28639c21ed357e1087a5b1c7b6456690342b6eba))
+
 ## [1.0.0-alpha.3](https://github.com/sheerlox/gpg_ex/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2023-11-26)
 
 

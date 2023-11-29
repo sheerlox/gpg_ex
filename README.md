@@ -18,7 +18,7 @@ The package can be installed by adding `gpg_ex` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:gpg_ex, "1.0.0-alpha.3"}
+    {:gpg_ex, "1.0.0-alpha.4"}
   ]
 end
 ```
