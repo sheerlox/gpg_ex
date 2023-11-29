@@ -105,7 +105,7 @@ defmodule GPGex do
   end
 
   @doc """
-  Same as `cmd/1` but raises a `RuntimeError` if the command fails.
+  Same as `cmd/2` but raises a `RuntimeError` if the command fails.
 
   ## Examples
 
@@ -125,6 +125,26 @@ defmodule GPGex do
       {:error, {_, stdout, args}} ->
         raise RuntimeError,
               "GPG command 'gpg #{Enum.join(args, " ")}' failed with:\n#{Enum.join(stdout, "\n")}"
+    end
+  end
+
+  @doc """
+  Same as `cmd/2` but returns a success boolean.
+
+  ## Examples
+
+      iex> GPGex.cmd?(["--unknown-option"])
+      false
+
+      iex> GPGex.cmd?(["--recv-keys", "18D5DCA13E5D61587F552A1BDEB5A837B34DD01D"])
+      true
+
+  """
+  @spec cmd?([String.t()], keyword()) :: boolean
+  def cmd?(args, opts \\ []) when is_list(args) do
+    case cmd(args, opts) do
+      {:ok, _} -> true
+      {:error, _} -> false
     end
   end
 
