@@ -54,7 +54,7 @@ defmodule GPGex do
 
   ## Examples
 
-      iex> {:ok, messages, stdout} = GPGex.cmd(["--recv-keys", "18D5DCA13E5D61587F552A1BDEB5A837B34DD01D"])
+      iex> {:ok, {messages, stdout}} = GPGex.cmd(["--recv-keys", "18D5DCA13E5D61587F552A1BDEB5A837B34DD01D"])
       iex> messages
       [
         "KEY_CONSIDERED 18D5DCA13E5D61587F552A1BDEB5A837B34DD01D 0",
@@ -70,19 +70,19 @@ defmodule GPGex do
       ]
 
       iex> GPGex.cmd(["--delete-keys", "18D5DCA13E5D61587F552A1BDEB5A837B34DD01D"])
-      {:ok, [], []}
+      {:ok, {[], []}}
 
       iex> GPGex.cmd(["--recv-keys", "91C8AFC4674BF0963E7A90CEB7FFBE9D2DF23D67"])
-      {:error,
+      {:error, {
         ["FAILURE recv-keys 167772218"],
         ["keyserver receive failed: No data"],
         ["--homedir", "/tmp/gpg_ex_keystore", "--batch", "--status-fd=1", "--recv-keys", "91C8AFC4674BF0963E7A90CEB7FFBE9D2DF23D67"]
-      }
+      }}
 
   """
   @spec cmd([String.t()], keyword()) ::
-          {:ok, [String.t()], [String.t()]}
-          | {:error, [String.t()], [String.t()], [String.t()]}
+          {:ok, {[String.t()], [String.t()]}}
+          | {:error, {[String.t()], [String.t()], [String.t()]}}
   def cmd(args, opts \\ []) when is_list(args) do
     %{keystore: keystore} = Enum.into(opts, %{keystore: nil})
 
@@ -99,8 +99,8 @@ defmodule GPGex do
     [messages, stdout] = process_output(res)
 
     case code do
-      0 -> {:ok, messages, stdout}
-      _ -> {:error, messages, stdout, args}
+      0 -> {:ok, {messages, stdout}}
+      _ -> {:error, {messages, stdout, args}}
     end
   end
 
@@ -113,16 +113,16 @@ defmodule GPGex do
       ** (RuntimeError) GPG command 'gpg --homedir /tmp/gpg_ex_keystore --batch --status-fd=1 --unknown-option' failed with:
       invalid option "--unknown-option"
 
-      iex> {_, _} = GPGex.cmd!(["--recv-keys", "18D5DCA13E5D61587F552A1BDEB5A837B34DD01D"])
+      iex> {_messages, _stdout} = GPGex.cmd!(["--recv-keys", "18D5DCA13E5D61587F552A1BDEB5A837B34DD01D"])
 
   """
   @spec cmd!([String.t()], keyword()) :: {[String.t()], [String.t()]}
   def cmd!(args, opts \\ []) when is_list(args) do
     case cmd(args, opts) do
-      {:ok, messages, stdout} ->
+      {:ok, {messages, stdout}} ->
         {messages, stdout}
 
-      {:error, _, stdout, args} ->
+      {:error, {_, stdout, args}} ->
         raise RuntimeError,
               "GPG command 'gpg #{Enum.join(args, " ")}' failed with:\n#{Enum.join(stdout, "\n")}"
     end

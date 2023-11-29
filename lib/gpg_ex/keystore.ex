@@ -34,7 +34,7 @@ defmodule GPGex.Keystore do
 
       iex> keystore = GPGex.Keystore.get_keystore(path: "/tmp/test_keystore", keyring: "pubring_2.kbx")
       %GPGex.Keystore{path: "/tmp/test_keystore", keyring: "pubring_2.kbx"}
-      iex> {:ok, _, _} = GPGex.cmd(
+      iex> {:ok, {_, _}} = GPGex.cmd(
       ...>    ["--recv-keys", "18D5DCA13E5D61587F552A1BDEB5A837B34DD01D"],
       ...>    keystore: keystore
       ...>  )
